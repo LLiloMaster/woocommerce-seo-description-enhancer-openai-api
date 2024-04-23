@@ -2,7 +2,7 @@
 function wc_pde_generate_description($product_data) {
     $options = get_option('wc_pde_options');
     $api_key = $options['api_key'];
-    $api_url = 'http://localhost:5000/v1/chat/completions';
+    $api_url = 'https://api.openai.com/chat/completions/v1/'; // API endpoint, compatible with pyChatGPTAPI+ endpoint...
 
     $body = array(
         'model' => 'gpt-3.5-turbo',
@@ -20,7 +20,7 @@ function wc_pde_generate_description($product_data) {
 
     $response = wp_remote_post($api_url, array(
         'method' => 'POST',
-	'timeout' => 80,
+//	'timeout' => 80, // uncomment if you are using the self hosted pyChatGPTAPI+ project
         'headers' => array(
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $api_key,
